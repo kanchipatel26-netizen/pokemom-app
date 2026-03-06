@@ -1,0 +1,44 @@
+ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';                                                                                                                                  
+  import { PokemonList } from './pages/PokemonList';                                                                                                                                                      
+  import { PokemonDetail } from './pages/PokemonDetail';                                                                                                                                                  
+                                                                                                                                                                                                          
+  function App() {                                                                                                                                                                                        
+    return (                                                                                                                                                                                              
+      <BrowserRouter>                                                                                                                                                                                     
+        <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">                                                                                                                        
+          {/* Header */}                                                                                                                                                                                  
+          <header className="bg-gradient-to-r from-red-600 to-red-500 text-white py-4 shadow-lg sticky top-0 z-50">                                                                                       
+            <div className="container mx-auto px-4 flex items-center justify-between">                                                                                                                    
+              <Link to="/" className="flex items-center gap-3 hover:opacity-90 transition">                                                                                                               
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">                                                                                                        
+                  <span className="text-2xl">🔴</span>                                                                                                                                                    
+                </div>                                                                                                                                                                                    
+                <h1 className="text-2xl font-bold tracking-tight">Pokédex</h1>                                                                                                                            
+              </Link>                                                                                                                                                                                     
+              <div className="text-sm opacity-80">                                                                                                                                                        
+                Gotta Catch 'Em All!                                                                                                                                                                      
+              </div>                                                                                                                                                                                      
+            </div>                                                                                                                                                                                        
+          </header>                                                                                                                                                                                       
+                                                                                                                                                                                                          
+          {/* Main Content */}                                                                                                                                                                            
+          <main className="container mx-auto px-4 py-8">                                                                                                                                                  
+            <Routes>                                                                                                                                                                                      
+              <Route path="/" element={<PokemonList />} />                                                                                                                                                
+              <Route path="/pokemon/:id" element={<PokemonDetail />} />                                                                                                                                   
+            </Routes>                                                                                                                                                                                     
+          </main>                                                                                                                                                                                         
+                                                                                                                                                                                                          
+          {/* Footer */}                                                                                                                                                                                  
+          <footer className="text-gray-400 py-6 mt-auto">                                                                                                                                     
+            <div className="container mx-auto px-4 text-center text-sm">                                                                                                                                  
+              <p>Data from <a href="https://pokeapi.co" className="text-red-400 hover:underline">PokéAPI</a></p>                                                                                          
+              <p className="mt-1">Built with React + TypeScript + TDD</p>                                                                                                                                 
+            </div>                                                                                                                                                                                        
+          </footer>                                                                                                                                                                                       
+        </div>                                                                                                                                                                                            
+      </BrowserRouter>                                                                                                                                                                                    
+    );                                                                                                                                                                                                    
+  }                                                                                                                                                                                                       
+                                                                                                                                                                                                          
+  export default App;       

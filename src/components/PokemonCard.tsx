@@ -1,0 +1,55 @@
+ import { Link } from 'react-router-dom';                                                                                                                                                                
+  import { getPokemonImageUrl } from '../services/pokemonApi';                                                                                                                                            
+                                                                                                                                                                                                          
+  interface PokemonCardProps {                                                                                                                                                                            
+    id: number;                                                                                                                                                                                           
+    name: string;                                                                                                                                                                                         
+  }                                                                                                                                                                                                       
+                                                                                                                                                                                                          
+  const capitalizeFirst = (str: string): string => {                                                                                                                                                      
+    return str.charAt(0).toUpperCase() + str.slice(1);                                                                                                                                                    
+  };                                                                                                                                                                                                      
+                                                                                                                                                                                                          
+  const formatPokemonId = (id: number): string => {                                                                                                                                                       
+    return `#${id.toString().padStart(3, '0')}`;                                                                                                                                                          
+  };                                                                                                                                                                                                      
+                                                                                                                                                                                                          
+  export const PokemonCard = ({ id, name }: PokemonCardProps) => {                                                                                                                                        
+    const imageUrl = getPokemonImageUrl(id);                                                                                                                                                              
+    const displayName = capitalizeFirst(name);                                                                                                                                                            
+    const displayId = formatPokemonId(id);                                                                                                                                                                
+                                                                                                                                                                                                          
+    return (                                                                                                                                                                                              
+      <Link                                                                                                                                                                                               
+        to={`/pokemon/${id}`}                                                                                                                                                                             
+        className="group block bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1"                                                 
+      >                                                                                                                                                                                                   
+        <div className="relative p-4">                                                                                                                                                                    
+          {/* Background gradient */}                                                                                                                                                                     
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 rounded-t-2xl"></div>                                                                                              
+                                                                                                                                                                                                          
+          {/* Pokemon ID Badge */}                                                                                                                                                                        
+          <span className="absolute top-2 right-2 text-xs font-bold text-gray-400 bg-white/80 px-2 py-1 rounded-full">                                                                                    
+            {displayId}                                                                                                                                                                                   
+          </span>                                                                                                                                                                                         
+                                                                                                                                                                                                          
+          {/* Pokemon Image */}                                                                                                                                                                           
+          <div className="relative">                                                                                                                                                                      
+            <img                                                                                                                                                                                          
+              src={imageUrl}                                                                                                                                                                              
+              alt={displayName}                                                                                                                                                                           
+              className="w-full h-32 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300"                                                                               
+              loading="lazy"                                                                                                                                                                              
+            />                                                                                                                                                                                            
+          </div>                                                                                                                                                                                          
+        </div>                                                                                                                                                                                            
+                                                                                                                                                                                                          
+        {/* Pokemon Name */}                                                                                                                                                                              
+        <div className="px-4 pb-4 pt-2 text-center">                                                                                                                                                      
+          <h3 className="text-lg font-bold text-gray-800 group-hover:text-red-500 transition-colors">                                                                                                     
+            {displayName}                                                                                                                                                                                 
+          </h3>                                                                                                                                                                                           
+        </div>                                                                                                                                                                                            
+      </Link>                                                                                                                                                                                             
+    );                                                                                                                                                                                                    
+  };          
